@@ -58,14 +58,26 @@ faye server for nodejs
 
 ## publish http api
 
+发布主题的http api 说明
+
 - POST
 - url = /pub
 - post data = key=foo&value=somevalue`
 
-通过curl命令测试POST
+通过curl命令测试本地POST
 
 	curl -d "key=foo&value=sss" http://127.0.0.1:4567/pub
+
+测试线上环境
+
+	curl -d "key=foo&value=sss" http://at35.com:4567/pub
 	
+检测步骤
+
+- 打开client/index.html
+- 在终端里执行curl命令
+- 看浏览器，是否会弹出`sss`
+
 ## 优化
 
 todo
