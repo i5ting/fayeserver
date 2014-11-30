@@ -3,6 +3,8 @@ fayeserver
 
 faye server for nodejs
 
+[![npm version](https://badge.fury.io/js/fayeserver.svg)](http://badge.fury.io/js/fayeserver)
+
 ## 安装
 
 在终端里输入
