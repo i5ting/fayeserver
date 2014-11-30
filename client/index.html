@@ -1,0 +1,25 @@
+<script type="text/javascript" 
+        src="http://localhost:8000/faye/client.js">
+        </script>
+<script type="text/javascript">
+  var client = new Faye.Client('http://localhost:8000/faye', {
+  	timeout : 120,
+		retry		: 5
+	});
+	
+	var subscription = client.subscribe('/foo', function(message) {
+	  // handle message
+		console.log(message);
+	});
+	
+	setTimeout(function(){
+		var publication = client.publish('/foo', {text: 'Hi there, foo test'});
+
+		publication.then(function() {
+		  alert('Message received by server!');
+		}, function(error) {
+		  alert('There was a problem: ' + error.message);
+		});
+		
+	},2000);
+</script>
