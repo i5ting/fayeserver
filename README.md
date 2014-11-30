@@ -62,13 +62,15 @@ faye server for nodejs
 - url = /pub
 - post data = key=foo&value=somevalue`
 
+通过curl命令测试POST
 
 	curl -d "key=foo&value=sss" http://127.0.0.1:4567/pub
+	
 ## 优化
 
 todo
 
 - [ ] 试验redis作为存储
 - [ ] 可视化monitor
-- [ ] publish http api
+- [x] publish http api
 
