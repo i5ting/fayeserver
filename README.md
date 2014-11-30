@@ -85,4 +85,4 @@ todo
 - [ ] 试验redis作为存储
 - [ ] 可视化monitor
 - [x] publish http api
-
+- [ ] add mocha && supertest for test
