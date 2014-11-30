@@ -13,6 +13,9 @@ faye server for nodejs
 	
 默认端口是`4567`，如果需要，请修改`index.js`文件。
 
+
+	npm run publish	
+	
 ## 用法
 
 在网页里

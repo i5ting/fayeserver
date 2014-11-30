@@ -1,10 +1,11 @@
 {
   "name": "fayeserver",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "fayeserver ==========",
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/forever -p . -l ./logs/access.log -e ./logs/error.log -a -w start index.js",
+		"publish": "npm publish .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
