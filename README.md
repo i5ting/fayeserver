@@ -56,6 +56,14 @@ faye server for nodejs
 
 如果访问不了 `http://at35.com:4567/faye/client.js` ，请邮件给我，shiren1118@126.com
 
+## publish http api
+
+- POST
+- url = /pub
+- post data = key=foo&value=somevalue`
+
+
+	curl -d "key=foo&value=sss" http://127.0.0.1:4567/pub
 ## 优化
 
 todo

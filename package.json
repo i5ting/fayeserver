@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/forever -p . -l ./logs/access.log -e ./logs/error.log -a -w start index.js",
-		"publish": "npm publish .",
+    "publish": "npm publish .",
+		"stop": "pgrep node|xargs kill -9",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +20,8 @@
   },
   "homepage": "https://github.com/i5ting/fayeserver",
   "dependencies": {
-    "faye": "^1.0.3"
+    "faye": "^1.0.3",
+    "querystring": "^0.2.0"
   },
   "devDependencies": {
     "forever": "^0.13.0"
