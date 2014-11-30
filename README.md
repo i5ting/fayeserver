@@ -54,7 +54,7 @@ faye server for nodejs
 - subscribe是订阅（浏览器端订阅主题，当其他地方发布一样的主题的时候，回调里的message会收到信息的）
 - publish是发布（浏览器发布主题，服务器端其实也可以发布的，暂未提供，见todo）
 
-如果访问不了http://at35.com:4567/faye/client.js，请邮件给我，shiren1118@126.com
+如果访问不了 `http://at35.com:4567/faye/client.js` ，请邮件给我，shiren1118@126.com
 
 ## 优化
 
