@@ -87,6 +87,7 @@ todo
 - [ ] 试验redis作为存储
 - [ ] 可视化monitor
 - [x] publish http api
+- [x] extract http api to src/http_pub_api.js
 - [ ] add mocha && supertest for test
 - [ ] use commander.js for bin
 - [ ] client wrapper
