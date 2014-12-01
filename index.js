@@ -7,7 +7,7 @@ var bayeux = new faye.NodeAdapter({
 });
 
 var server = http.createServer(function(req,res){
-	require("./http_pub_api")(bayeux, req, res);
+	require("./src/http_pub_api")(bayeux, req, res);
 })
 
 bayeux.attach(server);
