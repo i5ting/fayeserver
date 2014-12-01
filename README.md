@@ -88,3 +88,4 @@ todo
 - [ ] 可视化monitor
 - [x] publish http api
 - [ ] add mocha && supertest for test
+- [ ] use commander.js for bin
