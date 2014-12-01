@@ -89,3 +89,4 @@ todo
 - [x] publish http api
 - [ ] add mocha && supertest for test
 - [ ] use commander.js for bin
+- [ ] client wrapper
