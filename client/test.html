@@ -1,0 +1,39 @@
+<meta charset='utf-8'/>
+<script type="text/javascript" 
+        src="http://127.0.0.1:4567/faye/client.js">
+        </script>
+<script type="text/javascript" 
+        src="./sifter.min.js">
+        </script>
+<script type="text/javascript" 
+        src="./iChatClient.js">
+        </script>
+<script type="text/javascript">
+				
+  var client = new iChatClient({
+		url : 'http://127.0.0.1:4567/faye',
+  	timeout : 120,
+		retry		: 5
+	});
+	
+	client.join('foo', function(message) {
+	  // handle message
+		alert(message.text);
+		console.log(message);
+	});
+	
+			client.debug=false
+	
+	setTimeout(function(){
+		client.send('foo',{
+			text:'dssdjfkjkl'
+		},function(){
+			 // alert('Message received by server!');
+		},function(error){
+			alert('There was a problem: ' + error.message);
+		});
+
+
+		client.leave('foo');
+	},2000);
+</script>

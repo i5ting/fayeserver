@@ -32,6 +32,28 @@ faye server for nodejs
 		retry		: 5
 	});
 	
+	Logger = {
+	  incoming: function(message, callback) {
+	    console.log('incoming', message);
+	    callback(message);
+	  },
+	  outgoing: function(message, callback) {
+	    console.log('outgoing', message);
+	    callback(message);
+	  }
+	};
+
+	client.addExtension(Logger);
+	
+	client.on('transport:down', function() {
+	  // the client is offline
+	});
+
+	client.on('transport:up', function() {
+	  // the client is online
+	});
+	
+	
 	var subscription = client.subscribe('/foo', function(message) {
 	  // handle message
 		console.log(message);
@@ -87,7 +109,12 @@ todo
 - [ ] 试验redis作为存储
 - [ ] 可视化monitor
 - [x] publish http api
-- [x] extract http api to src/http_pub_api.js
+- [x] extract http api to src/http_pub_api.js 
 - [ ] add mocha && supertest for test
 - [ ] use commander.js for bin
 - [ ] client wrapper
+
+
+## url 
+
+- http://benalman.com/talks/unit-testing-qunit.html

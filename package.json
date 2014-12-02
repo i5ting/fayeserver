@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node_modules/.bin/forever -p . -l ./logs/access.log -e ./logs/error.log -a -w start index.js",
     "publish": "npm publish .",
-		"stop": "pgrep node|xargs kill -9",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "stop": "pgrep node|xargs kill -9",
+    "test": "./node_modules/.bin/mocha -u tdd"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,8 @@
     "querystring": "^0.2.0"
   },
   "devDependencies": {
-    "forever": "^0.13.0"
+    "chai": "^1.10.0",
+    "forever": "^0.13.0",
+    "mocha": "^2.0.1"
   }
 }
