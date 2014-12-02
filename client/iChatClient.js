@@ -84,7 +84,25 @@ iChatClient.prototype.join = function(chat_id,cb){
 	});
 }
 
-iChatClient.prototype.leave = function(chat_id, cb){
+iChatClient.prototype.is_exist = function(chat_id){
+	this.log(' chat_id = ' + chat_id);
+	var result = this.search(chat_id);
+	return (result.items.length > 0) ? true : false;
+}
+
+
+iChatClient.prototype.fetch = function(chat_id, cb){
+	this.log(' chat_id = ' + chat_id);
+	var result = this.search(chat_id);
+	if(result.items.length > 0 && cb) {
+		var obj = this.subs[result.items[0].id];
+		cb(obj);
+	}else {
+		console.log('当前'+ chat_id +'没有订阅,无需离开');
+	}
+}
+
+iChatClient.prototype.search = function(chat_id){
 	this.log(' chat_id = ' + chat_id);
 	
 	var result = this.sifter.search('' + chat_id, {
@@ -93,16 +111,21 @@ iChatClient.prototype.leave = function(chat_id, cb){
 		limit: 1
 	});
 	
-	if (result.items.length > 0) {
-		var sub = this.subs[result.items[0].id].subscription;
+	return result;
+}
+
+
+iChatClient.prototype.leave = function(chat_id, cb){
+	this.log(' chat_id = ' + chat_id);
+
+	this.fetch(chat_id, function(obj){
+		var sub = obj.subscription;
 		sub.cancel();
-		
+	
 		if(cb){
 			cb();
 		}
-	}else {
-		console.log('当前'+ chat_id +'没有订阅,无需离开');
-	}
+	});
 }
 
 iChatClient.prototype.send = function(topic, message, cb_received_by_server, cb_error){
