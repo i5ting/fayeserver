@@ -60,6 +60,11 @@ iChatClient.prototype.log = function(t) {
 }
 
 iChatClient.prototype.add = function(item) { 
+	if(this.is_exist(item.chat_id) == true){
+		this.log('chat_id以及存在了');
+		return;
+	}
+	
 	this.subs.push(item);
 	this.sifter = new Sifter(this.subs);
 }
@@ -113,7 +118,6 @@ iChatClient.prototype.search = function(chat_id){
 	
 	return result;
 }
-
 
 iChatClient.prototype.leave = function(chat_id, cb){
 	this.log(' chat_id = ' + chat_id);
