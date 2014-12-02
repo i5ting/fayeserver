@@ -22,8 +22,6 @@
 		console.log(message);
 	});
 	
-			client.debug=false
-	
 	setTimeout(function(){
 		client.send('foo',{
 			text:'dssdjfkjkl'
@@ -32,7 +30,6 @@
 		},function(error){
 			alert('There was a problem: ' + error.message);
 		});
-
 
 		client.leave('foo');
 	},2000);
