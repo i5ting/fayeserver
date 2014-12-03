@@ -91,14 +91,14 @@ iChatClient.prototype.join = function(chat_id,cb){
 
 iChatClient.prototype.is_exist = function(chat_id){
 	this.log(' chat_id = ' + chat_id);
-	var result = this.search(chat_id);
+	var result = this.search(chat_id, 1);
 	return (result.items.length > 0) ? true : false;
 }
 
 
 iChatClient.prototype.fetch = function(chat_id, cb){
 	this.log(' chat_id = ' + chat_id);
-	var result = this.search(chat_id);
+	var result = this.search(chat_id, 1);
 	if(result.items.length > 0 && cb) {
 		var obj = this.subs[result.items[0].id];
 		cb(obj);
@@ -107,13 +107,13 @@ iChatClient.prototype.fetch = function(chat_id, cb){
 	}
 }
 
-iChatClient.prototype.search = function(chat_id){
+iChatClient.prototype.search = function(chat_id, limit){
 	this.log(' chat_id = ' + chat_id);
 	
 	var result = this.sifter.search('' + chat_id, {
 	  fields: ['chat_id'],
 	  sort: [{field: 'chat_id', direction: 'asc'}],
-		limit: 1
+		limit: limit
 	});
 	
 	return result;
