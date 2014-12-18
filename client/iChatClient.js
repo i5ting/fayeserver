@@ -81,10 +81,10 @@ client.join('a_chat_id',function(message) {
 iChatClient.prototype.join = function(chat_id,cb){
 	var topic = '/' + chat_id;
 	
-	this.leave_all();
-	this.client.unsubscribe(topic, function(){
-		console.log("欲左先右，欲关注，先取消关注才能只关注一次");
-	});
+	if(this.is_exist(chat_id) == true){
+		this.log('chat_id以及存在了');
+		return;
+	}
 	
 	var subscription = this.client.subscribe(topic, cb);
 	
@@ -127,7 +127,7 @@ iChatClient.prototype.search = function(chat_id, limit){
 iChatClient.prototype.leave = function(chat_id, cb){
 	this.log(' chat_id = ' + chat_id);
 	
-	if(this.is_exist != true){
+	if(this.is_exist(chat_id) != true){
 		return;
 	}
 
@@ -187,4 +187,4 @@ iChatClient.prototype.reconnect = function(){
 	// this.client.connect(callback, context);
 }
 
-// module.exports = iChatClient;
+// module.exports = iChatClient;	
