@@ -22,6 +22,15 @@
 		console.log(message);
 	});
 	
+	
+	client.join('foo', function(message) {
+	  // handle message
+		alert(message.text);
+		console.log(message);
+	});
+	
+	
+	
 	setTimeout(function(){
 		client.send('foo',{
 			text:'dssdjfkjkl'
