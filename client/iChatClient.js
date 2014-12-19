@@ -48,6 +48,7 @@ window.iChatClient = iChatClient = function(option){
 	},option);
 	
 	this.client = new Faye.Client(opt.url, opt);
+	Faye.logger = console.log;
 	
 	this.client.addExtension({
 	  outgoing: function(message, callback) {
@@ -59,7 +60,31 @@ window.iChatClient = iChatClient = function(option){
 	  }
 	});
 	
+	
+	Logger = {
+	  incoming: function(message, callback) {
+	    console.log('incoming', message);
+	    callback(message);
+	  },
+	  outgoing: function(message, callback) {
+	    console.log('outgoing', message);
+	    callback(message);
+	  }
+	};
+
+	this.client.addExtension(Logger);
+	
 	this.client.disable('autodisconnect');
+	
+	this.client.on('transport:down', function() {
+	  // the client is offline
+		console.log("the client is offline");
+	});
+
+	this.client.on('transport:up', function() {
+	  // the client is online
+		console.log("the client is online");
+	});
 	
 	return this;
 }
