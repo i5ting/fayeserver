@@ -48,7 +48,7 @@ window.iChatClient = iChatClient = function(option){
 	},option);
 	
 	this.client = new Faye.Client(opt.url, opt);
-	Faye.logger = console.log;
+	// Faye.logger = console.log;
 	
 	this.client.addExtension({
 	  outgoing: function(message, callback) {
