@@ -10,22 +10,30 @@
 	
 	var subscription = client.subscribe('/foo', function(message) {
 	  // handle message
-		alert(message.text);
+		alert('1-'+message.text);
 		console.log(message);
 	});
 	
-	var subscription = client.subscribe('/foo', function(message) {
+	subscription.then(function() {
+	  alert('Subscription is now active!');
+		subscription.cancel();
+		// subscription.unsubscribe('/foo');
+	});
+	
+	var subscription1 = client.subscribe('/foo', function(message) {
 	  // handle message
-		alert(message.text);
+		alert('2-'+message.text);
 		console.log(message);
 	});
+	
+ 
 	
 	
 	setTimeout(function(){
 		var publication = client.publish('/foo', {text: 'Hi there, foo test'});
 
 		publication.then(function() {
-		  alert('Message received by server!');
+		  // alert('Message received by server!');
 		}, function(error) {
 		  alert('There was a problem: ' + error.message);
 		});

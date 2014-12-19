@@ -49,6 +49,18 @@ window.iChatClient = iChatClient = function(option){
 	
 	this.client = new Faye.Client(opt.url, opt);
 	
+	this.client.addExtension({
+	  outgoing: function(message, callback) {
+	    if (message.channel === '/meta/subscribe') {
+	      message.ext = message.ext || {};
+	      message.ext.username = 'username';
+	    }
+	    callback(message);
+	  }
+	});
+	
+	this.client.disable('autodisconnect');
+	
 	return this;
 }
 
@@ -81,17 +93,27 @@ client.join('a_chat_id',function(message) {
 iChatClient.prototype.join = function(chat_id,cb){
 	var topic = '/' + chat_id;
 	
-	if(this.is_exist(chat_id) == true){
-		this.log('chat_id以及存在了');
-		return;
-	}
+	// if(this.is_exist(chat_id) == true){
+// 		this.log('chat_id以及存在了');
+// 		return;
+// 	}
 	
 	var subscription = this.client.subscribe(topic, cb);
 	
-	this.add({
-		'chat_id' : chat_id,
-		'subscription' : subscription
+	var _instanse = this;
+	
+	subscription.then(function() {
+	  alert('Subscription is now active!');
+		subscription.cancel();
+		
+		_instanse.add({
+			'chat_id' : chat_id,
+			'subscription' : subscription
+		});
+		// subscription.unsubscribe('/foo');
 	});
+	
+	
 }
 
 iChatClient.prototype.is_exist = function(chat_id){

@@ -18,18 +18,15 @@
 	
 	client.join('foo', function(message) {
 	  // handle message
-		alert(message.text);
-		console.log(message);
+		alert('1-'+message.text);
+		console.log('1-'+message);
 	});
-	
 	
 	client.join('foo', function(message) {
 	  // handle message
-		alert(message.text);
-		console.log(message);
+		alert('2-'+message.text);
+		console.log('2-'+message);
 	});
-	
-	
 	
 	setTimeout(function(){
 		client.send('foo',{
