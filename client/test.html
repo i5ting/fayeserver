@@ -16,11 +16,18 @@
 		retry		: 5
 	});
 	
-	client.join('foo', function(message) {
+	var mysub =undefined;
+	
+	mysub = client.join('foo', function(message) {
 	  // handle message
 		alert('1-'+message.text);
 		console.log('1-'+message);
 	});
+	
+	// mysub.then(function() {
+	//
+	// 	// subscription.unsubscribe('/foo');
+	// });
 	
 	client.join('foo', function(message) {
 	  // handle message

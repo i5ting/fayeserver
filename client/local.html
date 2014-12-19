@@ -16,7 +16,9 @@
 	
 	subscription.then(function() {
 	  alert('Subscription is now active!');
-		subscription.cancel();
+		setTimeout(function(){
+			subscription.cancel();
+		},1000);
 		// subscription.unsubscribe('/foo');
 	});
 	

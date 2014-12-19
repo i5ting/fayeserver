@@ -92,28 +92,21 @@ client.join('a_chat_id',function(message) {
  */ 
 iChatClient.prototype.join = function(chat_id,cb){
 	var topic = '/' + chat_id;
-	
-	// if(this.is_exist(chat_id) == true){
-// 		this.log('chat_id以及存在了');
-// 		return;
-// 	}
-	
+
+
+	this.cancel_with_caht_id(chat_id,function(){
+		console.log("iChatClient.cancel_with_caht_id() finished.");
+	});
+
 	var subscription = this.client.subscribe(topic, cb);
 	
-	var _instanse = this;
-	
-	subscription.then(function() {
-	  alert('Subscription is now active!');
-		subscription.cancel();
-		
-		_instanse.add({
-			'chat_id' : chat_id,
-			'subscription' : subscription
-		});
-		// subscription.unsubscribe('/foo');
+	var _instance = this;
+	_instance.add({
+		'chat_id' : chat_id,
+		'subscription' : subscription
 	});
 	
-	
+	return subscription;
 }
 
 iChatClient.prototype.is_exist = function(chat_id){
@@ -122,6 +115,27 @@ iChatClient.prototype.is_exist = function(chat_id){
 	return (result.items.length > 0) ? true : false;
 }
 
+iChatClient.prototype.cancel_with_caht_id = function(chat_id, cb){
+	
+
+	this.log(' chat_id = ' + chat_id);
+	var result = this.search(chat_id, 1);
+	if(result.items.length > 0 && cb) {
+		var obj = this.subs[result.items[0].id];
+		var sub = obj.subscription;
+		
+		sub.then(function() {
+			// 只有与服务器建立连接的topic才有效。
+			sub.cancel();
+			// subscription.unsubscribe('/foo');
+		});
+		
+		console.log('当前'+ chat_id +'订阅,已取消');
+		cb();
+	}else {
+		console.log('当前'+ chat_id +'没有订阅,无需离开');
+	}
+}
 
 iChatClient.prototype.fetch = function(chat_id, cb){
 	this.log(' chat_id = ' + chat_id);
