@@ -95,7 +95,25 @@ faye server for nodejs
 测试线上环境
 
 	curl -d "key=foo&value=sss" http://at35.com:4567/pub
-	
+
+使用node发送post请求(java可以使用httpclient)
+
+```
+var request = require('request');
+
+request.post({
+	url:'http://at35.com:4567/pub', 
+	form: {
+		key:'foo',
+		value:'' + str
+	}
+}, function(err,httpResponse,body){ 
+	/* ... */ 
+	if(err)
+		console.log(err);
+})	
+```
+
 检测步骤
 
 - 打开client/index.html
